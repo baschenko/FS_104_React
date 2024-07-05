@@ -1,5 +1,8 @@
 import clsx from 'clsx';
 import s from './Profile.module.css';
+import { FaUserLarge } from 'react-icons/fa6';
+import { MdLocalPhone } from 'react-icons/md';
+import { AiOutlineMail } from 'react-icons/ai';
 
 const Profile = ({ user }) => {
   return (
@@ -10,10 +13,14 @@ const Profile = ({ user }) => {
         </div>
         <div className={s.content}>
           <h2>
-            {user.lastName} {user.firstName}
+            <FaUserLarge className={s.icon} /> {user.lastName} {user.firstName}
           </h2>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
+          <p>
+            <AiOutlineMail /> Email: {user.email}
+          </p>
+          <p>
+            <MdLocalPhone /> Phone: {user.phone}
+          </p>
           <p className={clsx(user.age > 18 ? s.green : s.red)}>
             Age: {user.age}
           </p>

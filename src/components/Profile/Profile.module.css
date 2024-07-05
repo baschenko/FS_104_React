@@ -27,6 +27,16 @@
   }
 }
 
+.icon {
+  color: violet;
+  width: 24px;
+  height: 24px;
+
+  &:hover {
+    color: black;
+  }
+}
+
 .content {
   display: flex;
   gap: 10px;
