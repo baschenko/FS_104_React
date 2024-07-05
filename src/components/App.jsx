@@ -1,20 +1,19 @@
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
-import Message from './Message/Message';
 import '../index.css';
+import Profile from './Profile/Profile';
+import profileData from '../assets/user.json';
+import s from './App.module.css';
+import clsx from 'clsx';
 
 export const App = () => {
-  const message = 'Find work';
   const age = 21;
   const fruits = ['banana', 'apple', 'lemon'];
   return (
     <main>
       <Header />
       <h2 className="title">Hello styles</h2>
-      <Message author="Petro" message="Prodam Holod" />
-      <Message author="Stepan" message={message} />
-
-      <Message message=" Holod" />
+      <Profile user={profileData} />
 
       {age > 18 ? <h2>Ого, який дорослий!!</h2> : <h2>Треба ще підрости</h2>}
       <ul>
@@ -23,6 +22,12 @@ export const App = () => {
         ))}
       </ul>
       <Footer />
+      <div className={s.wrapper}>
+        <div className={clsx(s.box)}></div>
+        <div className={clsx(s.red)}></div>
+        <div className={clsx(s.box)}></div>
+        <div className={clsx(s.black)}></div>
+      </div>
     </main>
   );
 };

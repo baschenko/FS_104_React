@@ -1,4 +1,15 @@
 .title {
-    color: red;
-    font-size:32px;
+  font-size: 32px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.online {
+  color: blueviolet;
 }
