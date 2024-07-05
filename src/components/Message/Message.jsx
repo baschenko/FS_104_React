@@ -1,10 +1,12 @@
-const Message = ({author = 'default', message}) => {
-     return (
-    <div>
-          <p>Autor: {author}</p>
-          <p>{message }</p>
-    </div>
-  )
-}
+import s from './Message.module.css';
 
-export default Message
+const Message = ({ author = 'default', message }) => {
+  return (
+    <div>
+      <p className={s.title}>Autor: {author}</p>
+      <p>{message}</p>
+    </div>
+  );
+};
+
+export default Message;
