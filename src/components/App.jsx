@@ -2,7 +2,7 @@
 import { useState } from 'react';
 // import { Counter } from './Counter/Counter';
 import Modal from './Modal/Modal';
-// import { TodoList } from './TodoList/TodoList';
+import { TodoList } from './TodoList/TodoList';
 
 export const App = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -29,7 +29,7 @@ export const App = () => {
           veritatis ipsam qui vel!
         </Modal>
       )}
-      {/* <TodoLis/>t /> */}
+      <TodoList />
       {/* <ColorPicker /> */}
     </div>
   );
