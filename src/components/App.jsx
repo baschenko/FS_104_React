@@ -9,9 +9,9 @@ import { UserForm } from './Forms/UseForm';
 export const App = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpenModal(true);
-  };
+  // const handleOpenModal = () => {
+  //   setIsOpenModal(true);
+  // };
 
   const handleCloseModal = () => {
     setIsOpenModal(false);
