@@ -1,12 +1,31 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import s from './UserForm.module.css';
+import * as Yup from 'yup';
 
 export const UserForm = () => {
+  const registerSchema = Yup.object({
+    name: Yup.string()
+      .required('This field is required')
+      .min(3, 'mast be more 3')
+      .max(20, 'mast be less 20'),
+    surname: Yup.string()
+      .required('This field is required')
+      .min(3, 'mast be more 3')
+      .max(20, 'mast be less 20'),
+    age: Yup.number()
+      .required('This field is required')
+      .min(14, 'mast be more 3')
+      .max(99, 'mast be less 20'),
+    role: Yup.string().oneOf(['admin', 'user']),
+    email: Yup.string().email('email is not valid'),
+  });
+
   const initialValues = {
     name: ' ',
     surname: ' ',
     age: ' ',
     email: '',
-    role: '',
+    role: 'user',
     city: '',
     about: '',
   };
@@ -15,39 +34,50 @@ export const UserForm = () => {
     actions.resetForm();
   };
   return (
-    <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <label>
+    <div className={s.formWrapper}>
+      <Formik
+        validationSchema={registerSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+      >
+        <Form className={s.form}>
+          <label className={s.lable}>
             <span>Name:</span>
-            <Field name="name" />
+            <Field className={s.input} name="name" />
+            <ErrorMessage name="name" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>Surname:</span>
-            <Field name="surname" />
+            <Field className={s.input} name="surname" />
+            <ErrorMessage name="surname" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>Age:</span>
-            <Field name="age" />
+            <Field className={s.input} name="age" />
+            <ErrorMessage name="age" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>Email:</span>
-            <Field name="email" />
+            <Field className={s.input} name="email" />
+            <ErrorMessage name="email" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>City:</span>
-            <Field name="city" />
+            <Field className={s.input} name="city" />
+            <ErrorMessage name="city" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>Role</span>
-            <Field name="role" as="select">
+            <Field className={s.input} name="role" as="select">
               <option value="user">User</option>
               <option value="admin">Admin</option>
             </Field>
+            <ErrorMessage name="role" component="span" className={s.error} />
           </label>
-          <label>
+          <label className={s.lable}>
             <span>About</span>
-            <Field as="textarea" name="about"></Field>
+            <Field className={s.input} as="textarea" name="about"></Field>
+            <ErrorMessage name="about" component="span" className={s.error} />
           </label>
           <button type="submit">Create</button>
         </Form>
