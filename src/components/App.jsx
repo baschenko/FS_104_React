@@ -2,7 +2,9 @@
 import { useState } from 'react';
 // import { Counter } from './Counter/Counter';
 import Modal from './Modal/Modal';
-import { TodoList } from './TodoList/TodoList';
+// import { TodoList } from './TodoList/TodoList';
+// import UncontroledForm from './Forms/UncontroledForm';
+import { UserForm } from './Forms/UseForm';
 
 export const App = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -18,9 +20,9 @@ export const App = () => {
   return (
     <div>
       {/* <Counter /> */}
-      <button type="button" onClick={handleOpenModal}>
+      {/* <button type="button" onClick={handleOpenModal}>
         Open modal
-      </button>
+      </button> */}
       {isOpenModal && (
         <Modal onClose={handleCloseModal}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui sint
@@ -29,7 +31,8 @@ export const App = () => {
           veritatis ipsam qui vel!
         </Modal>
       )}
-      <TodoList />
+      {/* <TodoList /> */}
+      <UserForm />
       {/* <ColorPicker /> */}
     </div>
   );
