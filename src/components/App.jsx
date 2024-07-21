@@ -7,7 +7,7 @@ const App = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetchNews('react');
+        const response = await fetchNews('react', 25);
         setHits(response.hits);
       } catch (error) {
         console.log(error);
