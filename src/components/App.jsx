@@ -5,10 +5,18 @@ import axios from 'axios';
 const App = () => {
   const [hits, setHits] = useState([]);
   useEffect(() => {
-    axios
-      .get(`https://hn.algolia.com/api/v1/search?query=react`)
-      .then(res => setHits(res.data.hits))
-      .catch();
+    const getData = async () => {
+      try {
+        const res = await axios.get(
+          `https://hn.algolia.com/api/v1/search?query=react`
+        );
+        setHits(res.data.hits);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
   }, []);
 
   return (
