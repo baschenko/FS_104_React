@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import List from './List/List';
 import { fetchNews } from '../services/api';
 import SearchBar from './SearchBar/SearchBar';
+import Loader from './Loader/Loader';
 
 const App = () => {
   const [hits, setHits] = useState([]);
@@ -29,7 +30,7 @@ const App = () => {
     <div>
       <SearchBar setQuery={setQuery} />
       <List items={hits} />
-      {isLoading && <h1>Loading data...</h1>}
+      {isLoading && <Loader />}
     </div>
   );
 };
