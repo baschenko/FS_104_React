@@ -9,15 +9,16 @@ const App = () => {
   const [query, setQuery] = useState('react');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     const getData = async () => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const response = await fetchNews(query, 25);
+        const response = await fetchNews(query, page, 5);
 
-        setHits(response.hits);
+        setHits(prev => [...prev, ...response.hits]);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -27,7 +28,7 @@ const App = () => {
     };
 
     getData();
-  }, [query]);
+  }, [page, query]);
 
   return (
     <div>
@@ -35,6 +36,9 @@ const App = () => {
       <List items={hits} />
       {isLoading && <Loader />}
       {isError && <h2>Something went wrong! Try again...</h2>}
+      <button type="button" onClick={() => setPage(prev => prev + 1)}>
+        Load more
+      </button>
     </div>
   );
 };
