@@ -6,14 +6,19 @@ import SearchBar from './SearchBar/SearchBar';
 const App = () => {
   const [hits, setHits] = useState([]);
   const [query, setQuery] = useState('react');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetchNews(query, 25);
+
         setHits(response.hits);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -24,6 +29,7 @@ const App = () => {
     <div>
       <SearchBar setQuery={setQuery} />
       <List items={hits} />
+      {isLoading && <h1>Loading data...</h1>}
     </div>
   );
 };
