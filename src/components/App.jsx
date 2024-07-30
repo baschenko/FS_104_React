@@ -1,58 +1,11 @@
-import { useEffect, useState } from 'react';
-import List from './List/List';
-import { fetchNews } from '../services/api';
-import SearchBar from './SearchBar/SearchBar';
-import Loader from './Loader/Loader';
+import { Header } from './Header/Header';
+import UsersList from './UsersList/UsersList';
 
-const App = () => {
-  const [hits, setHits] = useState([]);
-  const [query, setQuery] = useState('react');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(true);
-        setIsError(false);
-        const response = await fetchNews(query, page, 5);
-
-        setHits(prev => [...prev, ...response.hits]);
-        setTotal(response.nbPages);
-      } catch (error) {
-        console.log(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getData();
-  }, [page, query]);
-
-  const handleSetQuery = query => {
-    setQuery(query);
-    setHits([]);
-    setPage(0);
-  };
-
+export const App = () => {
   return (
     <div>
-      <SearchBar setQuery={handleSetQuery} />
-      {isError && <h2>Something went wrong! Try again...</h2>}
-      <List items={hits} />
-      {isLoading && <Loader />}
-      {total > page && !isLoading && (
-        <button type="button" onClick={() => setPage(prev => prev + 1)}>
-          Load more
-        </button>
-      )}
+      <Header />
+      <UsersList />
     </div>
   );
 };
-
-export default App;
-
-//https://hn.algolia.com/api/v1/
