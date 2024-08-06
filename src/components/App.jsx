@@ -5,7 +5,6 @@ import About from '../pages/About/About';
 import NotFound from '../pages/NotFound/NotFound';
 import Users from '../pages/Users/Users';
 import UserDetails from '../pages/UserDetails/UserDetails';
-import { GiH2O } from 'react-icons/gi';
 import UserPosts from './UserPosts/UserPosts';
 
 export const App = () => {
@@ -16,10 +15,12 @@ export const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/users" element={<Users />} />
+
         <Route path="/users/:userId" element={<UserDetails />}>
           <Route path="address" element={<h2>Address</h2>} />
           <Route path="posts" element={<UserPosts />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
