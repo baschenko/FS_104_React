@@ -4,6 +4,7 @@ import {
   NavLink,
   Outlet,
   useLocation,
+  useNavigate,
   useParams,
 } from 'react-router-dom';
 import { fetchUsersById } from '../../services/api';
@@ -11,9 +12,16 @@ import { fetchUsersById } from '../../services/api';
 const UserDetails = () => {
   const params = useParams();
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
   const goBackRef = useRef(location?.state || '/users');
-  console.log(location);
+
+  useEffect(() => {
+    setTimeout(() => {
+      //через 15 сек людину редиректить на сторінку / без її участі
+      navigate('/');
+    }, 15000);
+  }, [navigate]);
 
   useEffect(() => {
     {
