@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import {
   Link,
   NavLink,
@@ -50,7 +50,9 @@ const UserDetails = () => {
         <NavLink to="address">Address</NavLink>
         <NavLink to="posts">Posts</NavLink>
       </div>
-      <Outlet />
+      <Suspense fallback={<h2>Loading outlet...</h2>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
